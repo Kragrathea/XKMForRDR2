@@ -5,7 +5,7 @@ https://github.com/fqlx/XboxKeyboardMouse
 Original README:
 
 
-**Help support this project by ⭐️'ing it! 😍**
+**Help support XboxKeyboardMouse by ⭐️'ing it! 😍**
 
 # XboxKeyboardMouse
 Keyboard and mouse for Xbox One streaming to Windows 10.
