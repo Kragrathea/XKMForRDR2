@@ -1,3 +1,10 @@
+This is a special version of XboxKeyboardMouse for Read Dead Redemption 2. Original project here:
+
+https://github.com/fqlx/XboxKeyboardMouse
+
+Original README:
+
+
 **Help support this project by ⭐️'ing it! 😍**
 
 # XboxKeyboardMouse
