@@ -6,6 +6,7 @@ https://github.com/fqlx/XboxKeyboardMouse
 
 * Allow multiple keys to bind to one button
 * Changed default controls
+
 | Xbox Controller | Keyboard/Mouse |
 | ------------- |:-----------------:|
 | A       | A                 |
@@ -24,6 +25,7 @@ https://github.com/fqlx/XboxKeyboardMouse
 | DPadDown |Down    |
 | DPadLeft |Left    |
 | DPadRight |Right    |
+
 * Center mouse on Xbox app window to allow multimonitor
 * Default Tick rate 10
 
