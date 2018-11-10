@@ -61,6 +61,12 @@ namespace XboxKeyboardMouse
 
                         if (started == false)
                         {
+                            RECT rect;
+                            GetWindowRect(handle, out rect);
+
+                            TranslateMouse.Mouse_Center_Offset_X = rect.X;
+                            TranslateMouse.Mouse_Center_Offset_Y = rect.Y;
+
                             LockAndHideCursor();
                             started = true;
                             Program.MainForm.StatusRunning();

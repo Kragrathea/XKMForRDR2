@@ -32,10 +32,14 @@ namespace XboxKeyboardMouse {
         static Point centered = new Point(Screen.PrimaryScreen.Bounds.Width / 2, Screen.PrimaryScreen.Bounds.Height / 2);
         static short iMax = short.MaxValue;
         static short iMin = short.MinValue;
-        
+
+        public static int Mouse_Center_Offset_X = 0;
+        public static int Mouse_Center_Offset_Y = 0;
         public static void MouseMovementInput() {
             centered = new Point(Screen.PrimaryScreen.Bounds.Width / 2, Screen.PrimaryScreen.Bounds.Height / 2);
-            
+            centered.X += Mouse_Center_Offset_X;
+            centered.Y += Mouse_Center_Offset_Y;
+
             while (true) {
                 switch (Program.ActiveConfig.Mouse_Eng_Type) {
                     case MouseTranslationMode.Percentage: MouseMovement_Percentage(); break;
@@ -68,14 +72,22 @@ namespace XboxKeyboardMouse {
         {
             // Fine tuning will go back a bit from where the last calibration ended, since human response
             // times are limited, and iterate slower this time so the user end with a more accurate value.
-            HandleCalibrator((short)(Program.ActiveConfig.DeadZoneSize * 0.85), FineTuneCalibrationSpeedAdvancementPerPoll);
+            if (!TRIGGER_RIGHT_PRESSED)
+                HandleCalibrator((short)(Program.ActiveConfig.DeadZoneSize * 0.85), FineTuneCalibrationSpeedAdvancementPerPoll);
+            else
+                HandleCalibrator((short)(Program.ActiveConfig.AimDeadZoneSize * 0.85), FineTuneCalibrationSpeedAdvancementPerPoll);
         }
 
         private static void HandleCalibrator(short startSize, short incrementSize)
         {
             if (deadZoneCalibrator != null)
             {
-                Program.ActiveConfig.DeadZoneSize = deadZoneCalibrator.CurrentDeadZone;
+                if (!TRIGGER_RIGHT_PRESSED)
+                    Program.ActiveConfig.DeadZoneSize = deadZoneCalibrator.CurrentDeadZone;
+                else
+                    Program.ActiveConfig.AimDeadZoneSize = deadZoneCalibrator.CurrentDeadZone;
+
+
                 deadZoneCalibrator = null;
             }
             else
@@ -129,10 +141,21 @@ namespace XboxKeyboardMouse {
             short joyX = 0, joyY = 0;
 
             var deadZoneSize = Program.ActiveConfig.DeadZoneSize;
+
+            if (TRIGGER_RIGHT_PRESSED)
+                deadZoneSize = Program.ActiveConfig.AimDeadZoneSize;
+
             if (deadZoneCalibrator != null)
             {
                 // Pretend the mouse is always moving one pixel in each axis, until user intervention.
                 deadZoneSize = deadZoneCalibrator.AdvanceDeadZoneSize();
+
+                if (TRIGGER_RIGHT_PRESSED)
+                    Console.WriteLine("AimDeadzone:" + deadZoneSize);
+                else
+                    Console.WriteLine("Deadzone:" + deadZoneSize);
+
+
                 joyX = Convert.ToInt16(deadZoneSize);
                 joyY = 0;
             }

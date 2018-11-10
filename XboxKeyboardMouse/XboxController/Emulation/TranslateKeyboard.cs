@@ -32,6 +32,59 @@ namespace XboxKeyboardMouse {
 
         public static Dictionary<RunTimeOptionType, RunTimeOption> mapRunTimeOptions = new Dictionary<RunTimeOptionType, RunTimeOption>();
 
+        public static List<Tuple<GamePadControl, Key>> defaultKeyMap = new List<Tuple<GamePadControl, Key>>() {
+            new Tuple<GamePadControl, Key>(GamePadControl.DPadUp,Key.Up),
+            new Tuple<GamePadControl, Key>(GamePadControl.DPadDown,Key.Down),
+            new Tuple<GamePadControl, Key>(GamePadControl.DPadLeft,Key.Left),
+            new Tuple<GamePadControl, Key>(GamePadControl.DPadRight,Key.Right),
+            new Tuple<GamePadControl, Key>(GamePadControl.Start,Key.M),
+            new Tuple<GamePadControl, Key>(GamePadControl.Back,Key.V),
+
+            new Tuple<GamePadControl, Key>(GamePadControl.LeftStickClick,Key.LeftShift),
+            new Tuple<GamePadControl, Key>(GamePadControl.RightStickClick,Key.C),
+            new Tuple<GamePadControl, Key>(GamePadControl.LeftStickClick,Key.G),
+            new Tuple<GamePadControl, Key>(GamePadControl.RightStickClick,Key.G),
+
+            new Tuple<GamePadControl, Key>(GamePadControl.LeftShoulder,Key.Q),
+            new Tuple<GamePadControl, Key>(GamePadControl.RightShoulder,Key.E),
+            new Tuple<GamePadControl, Key>(GamePadControl.Guide,Key.Oem3),
+
+            new Tuple<GamePadControl, Key>(GamePadControl.A,Key.Space),
+            new Tuple<GamePadControl, Key>(GamePadControl.A,Key.Return),
+
+            new Tuple<GamePadControl, Key>(GamePadControl.B,Key.B),
+            new Tuple<GamePadControl, Key>(GamePadControl.X,Key.X),
+            new Tuple<GamePadControl, Key>(GamePadControl.Y,Key.Y),
+
+            new Tuple<GamePadControl, Key>(GamePadControl.B,Key.T),
+            new Tuple<GamePadControl, Key>(GamePadControl.X,Key.R),
+            new Tuple<GamePadControl, Key>(GamePadControl.Y,Key.F),
+        };
+
+        public static List<Tuple<GamePadControl, Key>> keyMap = new List<Tuple<GamePadControl, Key>>(defaultKeyMap);
+
+        //load from ini file. NOT working yet. 
+        public static void LoadKeymap()
+        {
+            //keyMap = defaultKeyMap;
+            return;
+            
+            var buttonName = "Start";
+            var keyName = "M";
+            GamePadControl button;
+            if (Enum.TryParse(buttonName, true, out button))
+            {
+                Key key;
+                if (Enum.TryParse(keyName, true, out key))
+                {
+                    keyMap.Add(new Tuple<GamePadControl, Key>(button, key));
+                }
+
+            }
+
+
+        }
+
         private static void KeyInput(SimulatedGamePadState controller) {
             List<bool> btnStatus = new List<bool>();
             
@@ -57,7 +110,22 @@ namespace XboxKeyboardMouse {
                 // -------------------------------------------------------------------------------
                 //                                BUTTONS
                 // -------------------------------------------------------------------------------
-                foreach (var control in GamePadControls.BinaryControls)
+
+                //Preclear keyboard buttons
+                foreach (var item in keyMap)
+                {
+                    controller.Buttons &= ~item.Item1;
+                }
+                
+
+                //Now set. 
+                foreach (var item in keyMap)
+                {
+                    if(Keyboard.IsKeyDown(item.Item2))
+                        controller.Buttons |= item.Item1;
+                }
+
+                /*foreach (var control in GamePadControls.BinaryControls)
                 {
                     // Explicitly set the state of every binary button we care about: If it's in our map
                     // and the key is currently pressed, set the button to pressed, else set it to unpressed.
@@ -66,7 +134,9 @@ namespace XboxKeyboardMouse {
                     else
                         controller.Buttons &= ~control;
                 }
-                
+                */
+
+
                 // -------------------------------------------------------------------------------
                 //                                TRIGGERS
                 // -------------------------------------------------------------------------------
@@ -138,7 +208,7 @@ namespace XboxKeyboardMouse {
             
             if (time != "0 MS") {
                 // Display the time
-                Logger.appendLogLine("KeyboardInput", $"Timed @ {time}", Logger.Type.Debug);
+ //               Logger.appendLogLine("KeyboardInput", $"Timed @ {time}", Logger.Type.Debug);
             }
         }
 

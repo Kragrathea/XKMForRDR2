@@ -29,21 +29,22 @@ namespace XboxKeyboardMouse.Config
         public bool Mouse_Is_RightStick = true;
         // <-- GENERIC
 
-        public int Mouse_TickRate = 16;
+        public int Mouse_TickRate = 10;
         public MouseTranslationMode Mouse_Eng_Type = MouseTranslationMode.DeadZoning;
         // <-- Mouse
 
         public int Controls_Calibrate_DeadZone = (int)Key.F12;
         public int Controls_Calibrate_FineDeadZone = (int)Key.F11;
-        public int DeadZoneSize = 0;
-        
+        public int DeadZoneSize = 6000;
+        public int AimDeadZoneSize = 10000;
+
         // --> Xbox Controls Keyboard
 
         // Main AXBY buttons
         public int Controls_KB_Xbox_A = (int)Key.Space;
-        public int Controls_KB_Xbox_B = (int)Key.LeftCtrl;
+        public int Controls_KB_Xbox_B = (int)Key.T;
         public int Controls_KB_Xbox_X = (int)Key.R;
-        public int Controls_KB_Xbox_Y = (int)Key.D1;
+        public int Controls_KB_Xbox_Y = (int)Key.F;
 
         // Shoulder Buttons
         public int Controls_KB_Xbox_LeftBumper = (int)Key.Q;
@@ -51,7 +52,7 @@ namespace XboxKeyboardMouse.Config
 
         // Xbox Access Buttons
         public int Controls_KB_Xbox_Guide = (int)Key.OemTilde;
-        public int Controls_KB_Xbox_Start = (int)Key.B;
+        public int Controls_KB_Xbox_Start = (int)Key.M;
         public int Controls_KB_Xbox_Back = (int)Key.V;
 
         // Xbox DPAD Buttons
@@ -146,6 +147,7 @@ namespace XboxKeyboardMouse.Config
             }
 
             Read(f, "Mouse", "DeadZone", ref d.DeadZoneSize);
+            Read(f, "Mouse", "AimDeadZone", ref d.AimDeadZoneSize);
             Read(f, "Controls_Keyboard", "CalibrateDZ", ref d.Controls_Calibrate_DeadZone);
             Read(f, "Controls_Keyboard", "FineTuneDZ", ref d.Controls_Calibrate_FineDeadZone);
 
@@ -253,6 +255,7 @@ namespace XboxKeyboardMouse.Config
             }
 
             Write(f, "Mouse",             "DeadZone",    d.DeadZoneSize);
+            Write(f, "Mouse", "AimDeadZone", d.AimDeadZoneSize);
             Write(f, "Controls_Keyboard", "CalibrateDZ", d.Controls_Calibrate_DeadZone);
             Write(f, "Controls_Keyboard", "FineTuneDZ",  d.Controls_Calibrate_FineDeadZone);
             

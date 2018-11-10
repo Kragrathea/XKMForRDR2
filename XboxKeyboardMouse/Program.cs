@@ -34,7 +34,22 @@ namespace XboxKeyboardMouse
             public static extern int AllocConsole();
         [DllImport("kernel32.dll", SetLastError = true)]
             private static extern int FreeConsole();
-        
+
+
+        public static bool OpenConfig(string file)
+        {
+            var profilePath = Path.Combine("profiles", file);
+
+            if (!File.Exists(profilePath))
+                return false;
+
+            System.Diagnostics.Process.Start("Notepad.exe", Environment.CurrentDirectory.ToString()+ "\\"+ profilePath);
+
+
+            return true;
+        }
+
+
         public static bool SetActiveConfig(string file) {
             var profilePath = Path.Combine("profiles", file);
 
@@ -141,6 +156,22 @@ namespace XboxKeyboardMouse
                     TranslateKeyboard.mapRightStickX.Add((Key)ActiveConfig.Controls_KB_Sticks_AXIS_R_Left, short.MinValue);
                 if (ActiveConfig.Controls_KB_Sticks_AXIS_R_Right != 0)
                     TranslateKeyboard.mapRightStickX.Add((Key)ActiveConfig.Controls_KB_Sticks_AXIS_R_Right, short.MaxValue);
+
+
+/*                if (!TranslateKeyboard.buttons.ContainsKey(Key.Y))
+                    TranslateKeyboard.buttons.Add(Key.Y, GamePadControl.Y);
+                if (!TranslateKeyboard.buttons.ContainsKey(Key.X))
+                    TranslateKeyboard.buttons.Add(Key.X, GamePadControl.X);
+                if (!TranslateKeyboard.buttons.ContainsKey(Key.B))
+                    TranslateKeyboard.buttons.Add(Key.B, GamePadControl.B);
+                if (!TranslateKeyboard.buttons.ContainsKey(Key.Return))
+                    TranslateKeyboard.buttons.Add(Key.Return, GamePadControl.A);
+
+                if (!TranslateKeyboard.buttons.ContainsKey(Key.LeftCtrl))
+                    TranslateKeyboard.buttons.Add(Key.LeftCtrl, GamePadControl.RightShoulder);
+
+                //TranslateKeyboard.buttons.Add((Key)(int)Key.Y, GamePadControl.Y);
+*/
             }
         }
 
@@ -184,6 +215,11 @@ namespace XboxKeyboardMouse
             Thread tApplicationRun = new Thread(ApplicationRun);
             tApplicationRun.SetApartmentState(ApartmentState.STA);
             tApplicationRun.Start();
+
+            //XboxKeyboardMouse.Hooks.HIDHook.getInfo();
+
+            //XboxKeyboardMouse.Hooks.InterceptKeys.init();
+
 
             while (MainForm == null)
                 Thread.Sleep(100);
