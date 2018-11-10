@@ -4,6 +4,7 @@ https://github.com/fqlx/XboxKeyboardMouse
 
 # Major changes between this and the original:
 
+* A separate deadzone when aiming
 * Allow multiple keys to bind to one button
 * Changed default controls
 
