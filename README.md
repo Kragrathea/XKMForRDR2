@@ -6,21 +6,24 @@ https://github.com/fqlx/XboxKeyboardMouse
 
 * Allow multiple keys to bind to one button
 * Changed default controls
-        * A = Space or Return
-        * B = B or T
-        * X = X or R
-        * Y = Y or F
-        * LeftShoulder = Q
-        * RightShoulder = E
-        * LeftStickClick = LeftShift or G
-        * RightStickClick = C or G
-        * Guide = ~Tilde
-        * Menu = M
-        * View = V
-        * DPadUp = Up
-        * DPadDown = Down
-        * DPadLeft = Left
-        * DPadRight = Right
+| Xbox Controller | Keyboard/Mouse |
+| ------------- |:-----------------:|
+| A       | A                 |
+| A | Space or Return    |
+| B | B or T    |
+| X | X or R    |
+| Y | Y or F    |
+| LeftShoulder |Q    |
+| RightShoulder |E    |
+| LeftStickClick |LeftShift or G    |
+| RightStickClick |C or G    |
+| Guide |~Tilde    |
+| Menu |M    |
+| View |V    |
+| DPadUp |Up    |
+| DPadDown |Down    |
+| DPadLeft |Left    |
+| DPadRight |Right    |
 * Center mouse on Xbox app window to allow multimonitor
 * Default Tick rate 10
 
