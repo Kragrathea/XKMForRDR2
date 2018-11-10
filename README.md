@@ -9,7 +9,6 @@ https://github.com/fqlx/XboxKeyboardMouse
 
 | Xbox Controller | Keyboard/Mouse |
 | ------------- |:-----------------:|
-| A       | A                 |
 | A | Space or Return    |
 | B | B or T    |
 | X | X or R    |
