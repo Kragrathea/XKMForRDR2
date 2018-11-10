@@ -2,27 +2,27 @@ This is a special version of XboxKeyboardMouse for Read Dead Redemption 2. Origi
 
 https://github.com/fqlx/XboxKeyboardMouse
 
-#Major changes between this and the original:
+# Major changes between this and the original:
 
--Allow multiple keys to bind to one button
--Changed default controls
-        A = Space or Return
-        B = B or T
-        X = X or R
-        Y = Y or F
-        LeftShoulder = Q
-        RightShoulder = E
-        LeftStickClick = LeftShift or G
-        RightStickClick = C or G
-        Guide = ~Tilde
-        Menu = M
-        View = V
-        DPadUp = Up
-        DPadDown = Down
-        DPadLeft = Left
-        DPadRight = Right
--Center mouse on Xbox app window to allow multimonitor
--Default Tick rate 10
+* Allow multiple keys to bind to one button
+* Changed default controls
+        * A = Space or Return
+        * B = B or T
+        * X = X or R
+        * Y = Y or F
+        * LeftShoulder = Q
+        * RightShoulder = E
+        * LeftStickClick = LeftShift or G
+        * RightStickClick = C or G
+        * Guide = ~Tilde
+        * Menu = M
+        * View = V
+        * DPadUp = Up
+        * DPadDown = Down
+        * DPadLeft = Left
+        * DPadRight = Right
+* Center mouse on Xbox app window to allow multimonitor
+* Default Tick rate 10
 
 Original README:
 
