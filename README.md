@@ -2,6 +2,11 @@ This is a special version of XboxKeyboardMouse for Read Dead Redemption 2. Origi
 
 https://github.com/fqlx/XboxKeyboardMouse
 
+# Dec 2 2018 update
+
+* Text file based key remapping supported
+* Fixed bug holding down keys
+
 # Major changes between this and the original:
 
 * A separate deadzone when aiming

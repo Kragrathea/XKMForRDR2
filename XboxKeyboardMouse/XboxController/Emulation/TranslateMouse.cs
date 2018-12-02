@@ -422,7 +422,8 @@ namespace XboxKeyboardMouse {
                 SimGamePad.Instance.State[0].LeftStickY = y;
             }
 
-            SimGamePad.Instance.Update();
+// Commented this out because it caused race conditions with main loop update.
+//            SimGamePad.Instance.Update();
         }
     }
 }

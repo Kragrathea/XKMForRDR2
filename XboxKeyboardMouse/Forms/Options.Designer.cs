@@ -52,6 +52,8 @@
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.preset_Name = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.tabKeyboard = new System.Windows.Forms.TabPage();
+            this.reloadKeymapButton = new System.Windows.Forms.Button();
+            this.editKeymapButton = new System.Windows.Forms.Button();
             this.circleControl2 = new XboxKeyboardMouse.Forms.Controls.CircleControl();
             this.circleControl1 = new XboxKeyboardMouse.Forms.Controls.CircleControl();
             this.editor_InputKeyboard = new System.Windows.Forms.PictureBox();
@@ -603,6 +605,8 @@
             // 
             // tabKeyboard
             // 
+            this.tabKeyboard.Controls.Add(this.reloadKeymapButton);
+            this.tabKeyboard.Controls.Add(this.editKeymapButton);
             this.tabKeyboard.Controls.Add(this.circleControl2);
             this.tabKeyboard.Controls.Add(this.circleControl1);
             this.tabKeyboard.Controls.Add(this.editor_InputKeyboard);
@@ -612,6 +616,26 @@
             this.tabKeyboard.Size = new System.Drawing.Size(524, 404);
             this.tabKeyboard.TabIndex = 3;
             this.tabKeyboard.Text = "Keyboard";
+            // 
+            // reloadKeymapButton
+            // 
+            this.reloadKeymapButton.Location = new System.Drawing.Point(273, 375);
+            this.reloadKeymapButton.Name = "reloadKeymapButton";
+            this.reloadKeymapButton.Size = new System.Drawing.Size(149, 23);
+            this.reloadKeymapButton.TabIndex = 30;
+            this.reloadKeymapButton.Text = "Reload keymap.txt";
+            this.reloadKeymapButton.UseVisualStyleBackColor = true;
+            this.reloadKeymapButton.Click += new System.EventHandler(this.reloadKeymapButton_Click);
+            // 
+            // editKeymapButton
+            // 
+            this.editKeymapButton.Location = new System.Drawing.Point(85, 374);
+            this.editKeymapButton.Name = "editKeymapButton";
+            this.editKeymapButton.Size = new System.Drawing.Size(149, 23);
+            this.editKeymapButton.TabIndex = 29;
+            this.editKeymapButton.Text = "Edit keymap.txt";
+            this.editKeymapButton.UseVisualStyleBackColor = true;
+            this.editKeymapButton.Click += new System.EventHandler(this.editKeymapButton_Click);
             // 
             // circleControl2
             // 
@@ -658,9 +682,9 @@
             this.editor_InputKeyboard.Controls.Add(this.xbo_k_Back);
             this.editor_InputKeyboard.Controls.Add(this.xbo_k_Start);
             this.editor_InputKeyboard.Controls.Add(this.xbo_k_RightStick);
-            this.editor_InputKeyboard.Controls.Add(this.xbo_k_LeftStick);
             this.editor_InputKeyboard.Controls.Add(this.xbo_k_joy_l_left);
             this.editor_InputKeyboard.Controls.Add(this.xbo_k_joy_l_right);
+            this.editor_InputKeyboard.Controls.Add(this.xbo_k_LeftStick);
             this.editor_InputKeyboard.Enabled = false;
             this.editor_InputKeyboard.Location = new System.Drawing.Point(3, 3);
             this.editor_InputKeyboard.Name = "editor_InputKeyboard";
@@ -868,9 +892,9 @@
             this.xbo_k_A.BackColor = System.Drawing.Color.Transparent;
             this.xbo_k_A.Font = new System.Drawing.Font("Segoe UI Semibold", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xbo_k_A.ForeColor = System.Drawing.Color.White;
-            this.xbo_k_A.Location = new System.Drawing.Point(370, 127);
+            this.xbo_k_A.Location = new System.Drawing.Point(361, 118);
             this.xbo_k_A.Name = "xbo_k_A";
-            this.xbo_k_A.Size = new System.Drawing.Size(50, 41);
+            this.xbo_k_A.Size = new System.Drawing.Size(75, 64);
             this.xbo_k_A.TabIndex = 14;
             this.xbo_k_A.Tag = "A";
             this.xbo_k_A.Text = "BTN";
@@ -972,9 +996,9 @@
             this.xbo_k_RightStick.BackColor = System.Drawing.Color.Transparent;
             this.xbo_k_RightStick.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xbo_k_RightStick.ForeColor = System.Drawing.Color.White;
-            this.xbo_k_RightStick.Location = new System.Drawing.Point(289, 149);
+            this.xbo_k_RightStick.Location = new System.Drawing.Point(270, 129);
             this.xbo_k_RightStick.Name = "xbo_k_RightStick";
-            this.xbo_k_RightStick.Size = new System.Drawing.Size(82, 83);
+            this.xbo_k_RightStick.Size = new System.Drawing.Size(126, 120);
             this.xbo_k_RightStick.TabIndex = 6;
             this.xbo_k_RightStick.Tag = "RS";
             this.xbo_k_RightStick.Text = "BTN";
@@ -985,9 +1009,9 @@
             this.xbo_k_LeftStick.BackColor = System.Drawing.Color.Transparent;
             this.xbo_k_LeftStick.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xbo_k_LeftStick.ForeColor = System.Drawing.Color.White;
-            this.xbo_k_LeftStick.Location = new System.Drawing.Point(92, 82);
+            this.xbo_k_LeftStick.Location = new System.Drawing.Point(77, 62);
             this.xbo_k_LeftStick.Name = "xbo_k_LeftStick";
-            this.xbo_k_LeftStick.Size = new System.Drawing.Size(63, 57);
+            this.xbo_k_LeftStick.Size = new System.Drawing.Size(93, 106);
             this.xbo_k_LeftStick.TabIndex = 5;
             this.xbo_k_LeftStick.Tag = "LS";
             this.xbo_k_LeftStick.Text = "BTN";
@@ -1243,11 +1267,11 @@
             // mouse_TickInvalid
             // 
             this.mouse_TickInvalid.AutoSize = true;
-            this.mouse_TickInvalid.Font = new System.Drawing.Font("Adobe Arabic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mouse_TickInvalid.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mouse_TickInvalid.ForeColor = System.Drawing.Color.Red;
             this.mouse_TickInvalid.Location = new System.Drawing.Point(352, 26);
             this.mouse_TickInvalid.Name = "mouse_TickInvalid";
-            this.mouse_TickInvalid.Size = new System.Drawing.Size(53, 16);
+            this.mouse_TickInvalid.Size = new System.Drawing.Size(69, 18);
             this.mouse_TickInvalid.TabIndex = 43;
             this.mouse_TickInvalid.Text = "INVALID";
             // 
@@ -1383,5 +1407,7 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel5;
         private System.Windows.Forms.ComboBox comboBox1;
         private MaterialSkin.Controls.MaterialLabel materialLabel4;
+        private System.Windows.Forms.Button reloadKeymapButton;
+        private System.Windows.Forms.Button editKeymapButton;
     }
 }

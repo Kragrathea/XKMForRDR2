@@ -1,0 +1,55 @@
+#Keymap for Read Dead Redemption 2
+# Format is:
+#		<Xbox Button Name> = <Keyboard Key Name> #comment
+# where <Xbox Button Name> is one of these:
+#        None                                               
+#        DPadUp                                             
+#        DPadDown                                           
+#        DPadLeft                                           
+#        DPadRight                                          
+#        Start                                              
+#        Back                                               
+#        LeftStickClick                                     
+#        RightStickClick                                    
+#        LeftShoulder                                       
+#        RightShoulder                                      
+#        Guide                                              
+#        A                                                  
+#        B                                                  
+#        X                                                  
+#        Y                                                  
+# 
+# And <Keyboard Key Name> is one of the keys listed here:
+# https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.keys?view=netframework-4.7.2
+# 
+
+Start=M #Menu
+Back=V #Camera
+
+LeftStickClick=LeftShift
+RightStickClick=C 
+
+#Note press G for Both Left and Right stick at same time (for deadeye)  
+LeftStickClick=G
+RightStickClick=G
+
+LeftShoulder=Q
+RightShoulder=E
+Guide=Oem3 #Oem3 is ~
+
+A=Space
+A=Return #Return is the same as space to make menu nav easier.
+
+#Bind X,Y and B buttons so on screen prompts work
+B=B 
+X=X
+Y=Y
+
+B=T
+X=R
+Y=F
+
+DPadUp=Up
+DPadDown=Down
+DPadLeft=Left
+DPadRight=Right

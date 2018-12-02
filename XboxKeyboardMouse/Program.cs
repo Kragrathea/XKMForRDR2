@@ -212,6 +212,8 @@ namespace XboxKeyboardMouse
             ReloadActiveConfig();
             ReloadControlScheme();
 
+            TranslateKeyboard.LoadKeymap();
+
             Thread tApplicationRun = new Thread(ApplicationRun);
             tApplicationRun.SetApartmentState(ApartmentState.STA);
             tApplicationRun.Start();

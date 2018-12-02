@@ -1,5 +1,6 @@
 ﻿using MaterialSkin;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -151,27 +152,84 @@ namespace XboxKeyboardMouse.Forms
             //*/
         }
 
+
+        private Dictionary<string, string> buttonNameToLabelName = new Dictionary<string, string>() {
+            { "DPadUp", "xbo_k_DpadUp" },
+            { "DPadDown","xbo_k_DpadDown" },
+            { "DPadLeft",          "xbo_k_DpadLeft" }, 
+            { "DPadRight",         "xbo_k_DpadRight" },
+            { "Start",             "xbo_k_Start" },
+            { "Back",              "xbo_k_Back" },
+            { "LeftStickClick",    "xbo_k_LeftStick" },
+            { "RightStickClick",   "xbo_k_RightStick" },
+            { "LeftShoulder",      "xbo_k_LeftShoulder" },
+            { "RightShoulder",     "xbo_k_RightShoulder" },
+            { "Guide",             "xbo_k_Guide" },
+            { "A",                 "xbo_k_A" },
+            { "B",                 "xbo_k_B" },
+            { "X",                 "xbo_k_X" },
+            { "Y",                 "xbo_k_Y" },
+/*            { "LeftTrigger",       "" },
+            { "RightTrigger",      "" },
+            { "LeftStickLeft",     "" },
+            { "LeftStickRight",    "" },
+            { "LeftStickUp",       "" },
+            { "LeftStickDown",     "" },
+            { "RightStickLeft",    "" },
+            { "RightStickRight",   "" },
+            { "RightStickUp",      "" },
+            { "RightStickDown",    "" },
+            { "LeftStickAsAnalog", "" },
+            { "RightStickAsAnalog","" },
+            { "DPadAsAnalog",      "" },*/
+        };
+
         private void LoadXboxInputButtons() {
             // Keyboard
-            xbo_k_A.Text = ((Key)cfg.Controls_KB_Xbox_A).ToString();
-            xbo_k_B.Text = ((Key)cfg.Controls_KB_Xbox_B).ToString();
-            xbo_k_X.Text = ((Key)cfg.Controls_KB_Xbox_X).ToString();
-            xbo_k_Y.Text = ((Key)cfg.Controls_KB_Xbox_Y).ToString();
+            xbo_k_A.Text = "";// ((Key)cfg.Controls_KB_Xbox_A).ToString();
+            xbo_k_B.Text = "";// ((Key)cfg.Controls_KB_Xbox_B).ToString();
+            xbo_k_X.Text = "";// ((Key)cfg.Controls_KB_Xbox_X).ToString();
+            xbo_k_Y.Text = "";// ((Key)cfg.Controls_KB_Xbox_Y).ToString();
 
-            xbo_k_LeftShoulder.Text = ((Key)cfg.Controls_KB_Xbox_LeftBumper).ToString();
-            xbo_k_DpadLeft.Text = ((Key)cfg.Controls_KB_Xbox_DPAD_Left).ToString();
-            xbo_k_LeftStick.Text = ((Key)cfg.Controls_KB_Xbox_Sticks_Left).ToString();
+            xbo_k_LeftShoulder.Text = "";// ((Key)cfg.Controls_KB_Xbox_LeftBumper).ToString();
+            xbo_k_DpadLeft.Text = "";//((Key)cfg.Controls_KB_Xbox_DPAD_Left).ToString();
+            xbo_k_LeftStick.Text = "";//((Key)cfg.Controls_KB_Xbox_Sticks_Left).ToString();
 
-            xbo_k_RightShoulder.Text = ((Key)cfg.Controls_KB_Xbox_RightBumper).ToString();
-            xbo_k_DpadRight.Text = ((Key)cfg.Controls_KB_Xbox_DPAD_Right).ToString();
-            xbo_k_RightStick.Text = ((Key)cfg.Controls_KB_Xbox_Sticks_Right).ToString();
+            xbo_k_RightShoulder.Text = "";//((Key)cfg.Controls_KB_Xbox_RightBumper).ToString();
+            xbo_k_DpadRight.Text = "";//((Key)cfg.Controls_KB_Xbox_DPAD_Right).ToString();
+            xbo_k_RightStick.Text = "";//((Key)cfg.Controls_KB_Xbox_Sticks_Right).ToString();
 
-            xbo_k_DpadUp.Text = ((Key)cfg.Controls_KB_Xbox_DPAD_Up).ToString();
-            xbo_k_DpadDown.Text = ((Key)cfg.Controls_KB_Xbox_DPAD_Down).ToString();
+            xbo_k_DpadUp.Text = "";//((Key)cfg.Controls_KB_Xbox_DPAD_Up).ToString();
+            xbo_k_DpadDown.Text = "";//((Key)cfg.Controls_KB_Xbox_DPAD_Down).ToString();
 
-            xbo_k_Start.Text = ((Key)cfg.Controls_KB_Xbox_Start).ToString();
-            xbo_k_Back.Text = ((Key)cfg.Controls_KB_Xbox_Back).ToString();
-            xbo_k_Guide.Text = ((Key)cfg.Controls_KB_Xbox_Guide).ToString();
+            xbo_k_Start.Text = "";//((Key)cfg.Controls_KB_Xbox_Start).ToString();
+            xbo_k_Back.Text = "";//((Key)cfg.Controls_KB_Xbox_Back).ToString();
+            xbo_k_Guide.Text = "";//((Key)cfg.Controls_KB_Xbox_Guide).ToString();
+
+            //Set labels based on current keymap.
+            var keyMap = TranslateKeyboard.keyMap;
+            foreach (var tuple in keyMap)
+            {
+                var buttonName = tuple.Item1.ToString();
+                if (buttonNameToLabelName.ContainsKey(buttonName))
+                {
+                    var labelName = buttonNameToLabelName[buttonName];
+                    var labels = this.Controls.OfType<Label>();
+
+                    Label label = tabKeyboard.Controls.Find(labelName, true).FirstOrDefault() as Label;
+                    if (label != null)
+                    {
+                        if (label.Text == "")
+                            label.Text = tuple.Item2.ToString();
+                        else
+                            label.Text += " or " + tuple.Item2.ToString();
+                    }
+                }
+
+            }
+
+
+            //Hard coded buttons.
 
             xbo_k_TLeft.Text = ((Key)cfg.Controls_KB_Xbox_Trigger_Left).ToString();
             xbo_k_TRight.Text = ((Key)cfg.Controls_KB_Xbox_Trigger_Right).ToString();
@@ -213,6 +271,11 @@ namespace XboxKeyboardMouse.Forms
         }
 
         public void ApplyInputEvents() {
+
+            //disable editing of keys in UI
+            return;
+
+
             foreach (Control ctrl in editor_InputKeyboard.Controls) {
                 if (ctrl is Label) {
                     ctrl.MouseHover += XBO_Input_OnEnter;
@@ -734,5 +797,16 @@ namespace XboxKeyboardMouse.Forms
 
         // -------------------
         #endregion
+
+        private void editKeymapButton_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("Notepad.exe", Environment.CurrentDirectory.ToString() + "\\keymap.txt" );
+        }
+
+        private void reloadKeymapButton_Click(object sender, EventArgs e)
+        {
+            TranslateKeyboard.LoadKeymap();
+            LoadXboxInputButtons();
+        }
     }
 }
