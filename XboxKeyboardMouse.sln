@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{64C97C22-C455-4493-B3CB-A3957C8A2B4D}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+		Installer\setup.exe = Installer\setup.exe
 	EndProjectSection
 EndProject
 Global
