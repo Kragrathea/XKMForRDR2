@@ -47,6 +47,7 @@ namespace XboxKeyboardMouse
                             ShowAndFreeCursor();
                             started = false;
                             Program.MainForm.StatusWaiting();
+                            Thread.Sleep(500);// fix high cpu when app not in focus.
 
                             continue;
                         }
